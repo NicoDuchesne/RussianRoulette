@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
             if(player.TryGetComponent<Tire>(out Tire shoot))
             {
                 count++;
-                if (shoot.Roulette()) {
+                if (shoot.Roullette()) {
                     Destroy(player);
                     Debug.Log($"le joueur {count} est mort");
                 } else

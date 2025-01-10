@@ -12,7 +12,7 @@ public class Tire : MonoBehaviour
         Debug.Log(relode);
     }
 
-    bool Roullette()
+    public bool Roullette()
     {
 
         int _bale = Random.Range(0, relode);
