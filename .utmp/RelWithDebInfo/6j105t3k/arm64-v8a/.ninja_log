@@ -1,12 +1,12 @@
 # ninja log v5
-133	989	7579511833631087	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	4e9de64d1ec7a9b9
-993	1417	7579511837607234	C:/Users/nicol/Documents/Cours/Annee2/RecurrenceGameMechanics/RussianRoulette/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/6j105t3k/obj/arm64-v8a/libswappywrapper.so	1c39470379afe3d7
-74	3012	7579511853490443	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	18d78851a4492faa
-39	3074	7579511854445949	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	ab2060974661b6e2
-1	3116	7579511854924418	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	c71bb079918f068b
-117	3177	7579511855529286	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	afa57dcd281b337
-88	3333	7579511857120787	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	d3f303f78d97a537
-15	3504	7579511858837417	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	8a8218298482129
-60	3841	7579511862219209	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	80fa1306605102f
-27	4115	7579511865007407	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	251c3536e4796061
-4116	4319	7579511867106596	C:/Users/nicol/Documents/Cours/Annee2/RecurrenceGameMechanics/RussianRoulette/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/6j105t3k/obj/arm64-v8a/libgame.so	3f443a7e8753d4f5
+41	411	7584815919168968	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	4e9de64d1ec7a9b9
+413	651	7584815921565349	C:/Users/nicol/Documents/Cours/Annee2/RecurrenceGameMechanics/RussianRoulette/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/6j105t3k/obj/arm64-v8a/libswappywrapper.so	1c39470379afe3d7
+13	1279	7584815927814568	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	18d78851a4492faa
+33	1323	7584815928310340	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	afa57dcd281b337
+5	1327	7584815928275005	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	c71bb079918f068b
+17	1386	7584815928881761	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	ab2060974661b6e2
+27	1421	7584815929289276	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	d3f303f78d97a537
+9	1469	7584815929788093	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	8a8218298482129
+22	1627	7584815931418885	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	80fa1306605102f
+1	1713	7584815932265063	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	251c3536e4796061
+1713	1829	7584815933449207	C:/Users/nicol/Documents/Cours/Annee2/RecurrenceGameMechanics/RussianRoulette/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/6j105t3k/obj/arm64-v8a/libgame.so	3f443a7e8753d4f5
