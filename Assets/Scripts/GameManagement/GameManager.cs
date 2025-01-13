@@ -1,44 +1,74 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.tvOS;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private GameObject[] players;
+    [SerializeField] private PlayerManager playerManager;
+    [SerializeField] private Tire bulletManager;
     private int turnCount;
 
-    void Start()
+    public void Start()
     {
         turnCount = 0;
     }
 
-    void Update()
+    public void Update()
     {
-        while(players.Length > 0)
+        
+    }
+
+    public void LaunchGame()
+    {
+        DisplayAllNames();
+
+        while (playerManager.PlayersList.Count > 1)
         {
             turnCount++;
             StartTurn();
         }
+        Debug.Log($"{playerManager.PlayersList[0].GetComponent<PlayerData>().PlayerName} a gagné il est vivant");
+        
+        
     }
 
-    void StartTurn()
+    private void StartTurn()
     {
-        Debug.Log($"Debut du tour {turnCount}");
-        int count = 0;
-        foreach (GameObject player in players)
+        Debug.Log($"Début du tour numéro {turnCount}");
+
+        for (int i = playerManager.PlayersList.Count - 1; i >= 0; i--)
         {
-            if(player.TryGetComponent<Tire>(out Tire shoot))
+            PlayerData playerData = playerManager.PlayersList[i].GetComponent<PlayerData>();
+
+            if (bulletManager.Roullette())
             {
-                count++;
-                if (shoot.Roullette()) {
-                    Destroy(player);
-                    Debug.Log($"le joueur {count} est mort");
-                } else
+                Debug.Log($"{playerData.PlayerName} est mort");
+                Destroy(playerManager.PlayersList[i]);
+                playerManager.PlayersList.RemoveAt(i);
+                if (playerManager.PlayersList.Count <= 1)
                 {
-                    Debug.Log($"le joueur {count} a survécu");
+                    return;
                 }
             }
+            else
+            {
+                Debug.Log($"{playerData.PlayerName} a survécu");
+            }
         }
-        Debug.Log("Fin du tour");
-        Debug.Log($"{players.Length} joueurs ont survécu");
+
+
+            Debug.Log($"Fin du tour");
     }
+
+    private void DisplayAllNames()
+    {
+        foreach (var player in playerManager.PlayersList)
+        {
+            PlayerData playerData = player.GetComponent<PlayerData>();
+            playerData.DisplayName();
+        }
+    }
+
 
 }

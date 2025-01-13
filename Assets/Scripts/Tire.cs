@@ -8,8 +8,8 @@ public class Tire : MonoBehaviour
     int relode = 6;
     private void Start()
     {
-        bool resulta = Roullette();
-        Debug.Log(relode);
+        //bool resulta = Roullette();
+        //Debug.Log(relode);
     }
 
     public bool Roullette()
@@ -20,14 +20,14 @@ public class Tire : MonoBehaviour
         if (_bale == 0)
         {
             relode = 6;
-            Debug.Log("true");
+            Debug.Log("bang");
             return true;
           
         }
         else
         {
             relode--;
-            Debug.Log("false");
+            Debug.Log("clic");
             return false;
 
         }
