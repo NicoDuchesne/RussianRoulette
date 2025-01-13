@@ -26,4 +26,10 @@ public void UpdatePlayerName()
     playerName = text.text;
     NameDisplay.text = playerName;
 }
+
+public void DisplayName()
+    {
+        text.gameObject.SetActive(false);
+        NameDisplay.gameObject.SetActive(true);
+    }
 }

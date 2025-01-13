@@ -5,14 +5,19 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
  private int nbPlayer = 0;
- private int maxNbPlayer = 10;
+ private int maxNbPlayer = 8;
  [SerializeField] private TextMeshProUGUI text;
  private string baseText = "Nb Player: ";
  [SerializeField] private List<GameObject> playersList = new List<GameObject>();
  [SerializeField] private GameObject playerPrefab;
  [SerializeField] private GameObject playerContainer;
 
- public void AddPlayer()
+    public List<GameObject> PlayersList
+    {
+        get => playersList;
+    }
+
+    public void AddPlayer()
  {
     if (nbPlayer >= maxNbPlayer)
     {
@@ -24,7 +29,7 @@ public class PlayerManager : MonoBehaviour
   UpdateTxt();
  }
 
- public void RemovePlayer()
+ public void RemoveLastPlayer()
  {
     if (nbPlayer <= 0)
     {
@@ -36,7 +41,19 @@ public class PlayerManager : MonoBehaviour
   UpdateTxt();
  }
 
- private void UpdateTxt()
+    public void RemovePlayerAtIndex(int index)
+    {
+        if (nbPlayer <= 0)
+        {
+            return;
+        }
+        nbPlayer--;
+        Destroy(playersList[index]);
+        playersList.RemoveAt(index);
+        UpdateTxt();
+    }
+
+    private void UpdateTxt()
  {
     text.text = baseText + nbPlayer;
  }
