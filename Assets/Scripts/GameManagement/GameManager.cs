@@ -1,64 +1,48 @@
+using JetBrains.Annotations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.tvOS;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private PlayerManager playerManager;
     [SerializeField] private Tire bulletManager;
-    private int turnCount;
 
-    public void Start()
-    {
-        turnCount = 0;
-    }
+    [SerializeField] private GameObject btnShoot;
+    [SerializeField] private GameObject btnStart;
+    [SerializeField] private TextMeshProUGUI PlayerShoot;
+    [SerializeField] private TextMeshProUGUI turnDisplay;
+    [SerializeField] private TextMeshProUGUI winMsg;
 
-    public void Update()
+    private int turnCount = 1;
+    private int actualIndex = 0;
+    private GameObject actualPlayer;
+
+    public void Awake()
     {
-        
+        btnShoot.SetActive(false);
+        turnDisplay.gameObject.SetActive(false);
+        winMsg.gameObject.SetActive(false);
     }
 
     public void LaunchGame()
     {
+        if (playerManager.PlayersList.Count < 2) {
+            return;
+        }
+
         DisplayAllNames();
-
-        while (playerManager.PlayersList.Count > 1)
-        {
-            turnCount++;
-            StartTurn();
-        }
-        Debug.Log($"{playerManager.PlayersList[0].GetComponent<PlayerData>().PlayerName} a gagné il est vivant");
-        
-        
-    }
-
-    private void StartTurn()
-    {
-        Debug.Log($"Début du tour numéro {turnCount}");
-
-        for (int i = playerManager.PlayersList.Count - 1; i >= 0; i--)
-        {
-            PlayerData playerData = playerManager.PlayersList[i].GetComponent<PlayerData>();
-
-            if (bulletManager.Roullette())
-            {
-                Debug.Log($"{playerData.PlayerName} est mort");
-                Destroy(playerManager.PlayersList[i]);
-                playerManager.PlayersList.RemoveAt(i);
-                if (playerManager.PlayersList.Count <= 1)
-                {
-                    return;
-                }
-            }
-            else
-            {
-                Debug.Log($"{playerData.PlayerName} a survécu");
-            }
-        }
-
-
-            Debug.Log($"Fin du tour");
+        UpdateTurnDisplay();
+        btnStart.SetActive(false);
+        turnDisplay.gameObject.SetActive(true);
+        btnShoot.SetActive(true);
+        actualPlayer = playerManager.PlayersList[actualIndex];
+        actualPlayer.GetComponentInChildren<TextMeshProUGUI>().color = Color.green;
+        UpdatePlayerShootTxt();
     }
 
     private void DisplayAllNames()
@@ -70,5 +54,74 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void Shoot()
+    {
+        bool isShot = bulletManager.Roullette();
+        if (isShot)
+        {
+            actualPlayer.GetComponentInChildren<Image>().enabled = false;
+            actualPlayer.GetComponentInChildren<TextMeshProUGUI>().enabled = false;
+            actualPlayer.GetComponent<PlayerData>().Isalive = false;
+
+        }
+
+        NextPlayer();
+        UpdatePlayerShootTxt();
+
+        CheckEndCondition();
+    }
+
+    public void NextPlayer()
+    {
+        actualPlayer.GetComponentInChildren<TextMeshProUGUI>().color = Color.white;
+
+        if (actualIndex+1 < playerManager.PlayersList.Count)
+        {
+            actualIndex++;
+        } else
+        {
+            actualIndex = 0;
+            turnCount++;
+            UpdateTurnDisplay();
+        }
+
+        actualPlayer = playerManager.PlayersList[actualIndex];
+        actualPlayer.GetComponentInChildren<TextMeshProUGUI>().color = Color.green;
+
+        if (actualPlayer.GetComponent<PlayerData>().Isalive == false)
+        {
+            NextPlayer();
+        }
+    }
+
+    public void CheckEndCondition()
+    {
+        int count = 0;
+
+        foreach (var player in playerManager.PlayersList)
+        {
+            if(player.GetComponent<PlayerData>().Isalive)
+            {
+                count++;
+            }
+        }
+
+        if (count == 1)
+        {
+            btnShoot.SetActive(false);
+            winMsg.text = $"{playerManager.PlayersList[actualIndex].GetComponent<PlayerData>().PlayerName} won ! They survived !";
+            winMsg.gameObject.SetActive(true);
+        }
+    }
+
+    public void UpdatePlayerShootTxt()
+    {
+        PlayerShoot.text = $"{actualPlayer.GetComponent<PlayerData>().PlayerName} Shoots";
+    }
+
+    public void UpdateTurnDisplay()
+    {
+        turnDisplay.text = $"Turn {turnCount}";
+    }
 
 }
